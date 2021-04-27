@@ -23,7 +23,7 @@ body {
     margin-top: 10px;
     margin-left: 20%;
     width: max-content;
-    font-size: 40px;
+    font-size: 35px;
     font-weight: 500;
     padding: 20px 0;
     margin-bottom: 10px;
@@ -35,7 +35,7 @@ body {
 }
 
 .header h1 {
-    margin:10px 10px 0 10px;
+    margin:10px 20px 0 20px;
     border:rgba(255, 255, 255, 0.301)
 }
 
@@ -46,7 +46,7 @@ body {
     flex-direction: row;
     justify-content: space-between;
     height: 550px;
-    margin: 10px 100px 0 100px;
+    margin: 15px 100px 0 100px;
     background-color: rgba(255, 255, 255, 0.849);
     border: solid rgb(7, 245, 106) 10px;
     box-shadow: 0px 0px 10px 7px rgb(146, 145, 145);
