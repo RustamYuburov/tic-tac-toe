@@ -4,9 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
     <title>Document</title>
 </head>
 <body>
+    <header class="header">
+        <h1 class="title">Tic Tac Toe Battle</h1>
+    </header>
+
+    <main class="main-body">
+        <div class="players number1">
+            <figure>
+                <figcaption>Player1</figcaption>
+                <img src="/photos/left.png" alt="" srcset="">
+            </figure>
+        </div>
+        <div class="container">
+            <div data-index="1" class="grid no-top no-left"></div>
+            <div data-index="2" class="grid no-top"></div>
+            <div data-index="3" class="grid no-top no-right"></div>
+            <div data-index="4" class="grid no-left"></div>
+            <div data-index="5" class="grid"></div>
+            <div data-index="6" class="grid no-right"></div>
+            <div data-index="7" class="grid no-bottom no-left"></div>
+            <div data-index="8" class="grid no-bottom"></div>
+            <div data-index="9" class="grid no-bottom no-right"></div>
+        </div>
+        <div class="players number2">
+            <figure>
+                <figcaption>Player2</figcaption>
+                <img src="/photos/right.png" alt="" srcset="">
+            </figure>
+        </div>
+    </main>
     
+    <!-- <div class="marker">
+        <button>X</button>
+        <button>O</button>
+    </div> -->
+
+    <script src="script.js"></script>
 </body>
 </html>
