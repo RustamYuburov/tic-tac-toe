@@ -59,7 +59,8 @@ body {
     width: 40%;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 177px 177px 177px;
+    grid-template-rows: 177px 177px 177px;
 }
 
 .grid {
