@@ -1,7 +1,6 @@
 'use strict';
 
 const Player = () => {
-
     let _marker;
 
     const getMarker = () => {
@@ -13,14 +12,12 @@ const Player = () => {
     };
 
     return {setMarker, getMarker};
-    
 };
 
 const gameBoard = (() => {
-
-    const _board = ['1', '2', '3',
-                   '4', '5', '6',
-                   '7', '8', '9'];
+    const _board = ['', '', '',
+                    '', '', '',
+                    '', '', ''];
     
     const getBoard = () => {
         return _board;
@@ -29,21 +26,58 @@ const gameBoard = (() => {
     return {getBoard}
 })();
 
-const gameController = (() => {
-    
-})();
-
 const displayController = (() => {
 
-    const arrayGrids = Array.from(document.querySelectorAll('.grid'));
-    console.log(arrayGrids[0].textContent = 'x');
+    const _arrayGrids = Array.from(document.querySelectorAll('.grid'));
+
+    const getGrids = () => {
+        return _arrayGrids;
+    }
     
     const displayBoard = (arr) => {
         arr.forEach((item, index) => {
-            arrayGrids[index].textContent = item;
+            _arrayGrids[index].textContent = item;
         });
     };
 
+    return {getGrids, displayBoard}
     
 })();
-console.log(gameBoard.getBoard())
+
+const gameController = (() => {  
+    const _gameboard = gameBoard.getBoard();
+    const _grids = displayController.getGrids();
+
+    const player1 = Player();
+    player1.setMarker('X')
+    const player2 =  Player();
+    player2.setMarker('O');
+
+    let win = false;
+    let isTie = false;
+    const winConditions = [
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6]
+    ]
+
+    function putSign(sign, index) {
+        if (_gameboard[index] !== '') return;
+        return _gameboard[index] = sign;
+    }
+    
+    _grids.forEach(grid => { grid.addEventListener('click', getSign)})
+
+    function getSign(e) {
+        e.preventDefault();
+        const index = e.target.getAttribute('data-index');
+        putSign(player1.getMarker(), index);
+        displayController.displayBoard(gameBoard.getBoard())
+    }
+
+})();
