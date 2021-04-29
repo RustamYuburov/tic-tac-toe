@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
 
 *,
 *::before,
@@ -53,6 +54,7 @@ body {
     box-shadow: 0px 0px 10px 7px rgb(146, 145, 145);
     border-radius: 15px;
     padding: 0;
+    z-index: 2;
 }
 
 .container {
@@ -74,6 +76,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+.grid:hover {
+    background-color: rgba(118, 239, 248, 0.438);
 }
 
 .no-top { border-top: none; }
@@ -99,4 +106,54 @@ img {
     margin-left: 20px;
     width: 90%;
     height: 450px;
+}
+
+/* Module */
+
+.alert-module {
+    position: fixed;
+    border: solid 1px black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 1s ease-in-out;
+    border-radius: 15px;
+    z-index: 10;
+    background-color: rgb(92, 221, 75);
+    width: 450px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgb(0, 255, 157);
+}
+
+.alert-module.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+.alert-text {
+    margin: 20px;
+    font-family: 'Zen Dots', Verdana, Tahoma, sans-serif;
+    font-size: 30px;
+    color: rgb(4, 29, 255);
+    font-weight: 550;
+    text-align: center;
+}
+
+.button-div {
+    margin-top: 30px;
+    height: 45px;
+    width: 100%;
+    text-align: center;
+}
+
+.button-div button {
+    z-index: 6;
+    cursor: pointer;
+    width: 80%;
+    height: 80%;
+    background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    outline: none;
+    border: none;
 }
