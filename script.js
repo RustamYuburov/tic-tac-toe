@@ -21,17 +21,13 @@ const Player = () => {
     };
 
 
-    return { setMarker,
-             getMarker,
-             getStatus,
-             setStatus
-                      };
+    return { setMarker, getMarker, getStatus, setStatus };
 
 };
 
 const gameBoard = (() => {
 
-    const _board = ['', '', '',
+    let _board = ['', '', '',
                     '', '', '',
                     '', '', ''];
     
@@ -39,15 +35,23 @@ const gameBoard = (() => {
         return _board;
     }
 
-    return {getBoard}
+    const clearBoard = () => {
+        for (let i = 0; i < _board.length; i++) {
+            _board[i] = '';
+        }
+    }
+
+    return {getBoard, clearBoard}
 
 })();
 
 const displayController = (() => {
-
+    
     const _arrayGrids = Array.from(document.querySelectorAll('.grid'));
     const _alertModule = document.querySelector('.alert-module');
     const _alertModuleText = document.querySelector('.alert-text');
+    const _overlay = document.querySelector('.overlay')
+    const restartButton = document.querySelector('#restart-btn');
 
     const getGrids = () => {
         return _arrayGrids;
@@ -62,23 +66,30 @@ const displayController = (() => {
             return _arrayGrids[index].innerHTML = item;
         });
     };
-
+    
     const displayWinner = (result) => {
         if (result === false) return;
         _alertModuleText.textContent = result;
         _alertModule.classList.add('active');
+        _overlay.classList.add('active');
     };
 
-    return {getGrids, displayBoard, displayWinner, getAlertModule};
+    const restart = () => {
+        gameController.reset();
+        _alertModule.classList.remove('active');
+        _overlay.classList.remove('active')
+    }
+
+    restartButton.addEventListener('click', restart);
+    
+    return {getGrids, displayBoard, displayWinner,};
     
 })();
 
 const gameController = (() => {  
 
-    const _gameboard = gameBoard.getBoard();
+    let _gameboard = gameBoard.getBoard();
     const _grids = displayController.getGrids();
-    const alert = displayController.getAlertModule();
-    const restartButton = document.querySelector('#prestart-btn');
 
     const player1 = Player();
     player1.setMarker('X');
@@ -100,7 +111,7 @@ const gameController = (() => {
     const checkWinO = () => {
         return winConditions.some((row) => {
             return row.every((i) => {
-                return _grids[i].textContent === "O";
+                return _gameboard[i] === "O";
             });
         });
     }
@@ -108,7 +119,7 @@ const gameController = (() => {
     const checkWinX = () => {
         return winConditions.some((row) => {
             return row.every((i) => {
-                return _grids[i].textContent === "X";
+                return _gameboard[i] === "X";
             });
         });
     }
@@ -154,14 +165,17 @@ const gameController = (() => {
         displayController.displayBoard(_gameboard);
         displayController.displayWinner(checkWinner());
     }
+
+    const reset = () => {
+        player1.setStatus(true);
+        player2.setStatus(false);
+        gameBoard.clearBoard();
+        _gameboard = gameBoard.getBoard();
+        displayController.displayBoard(_gameboard);
+    }
     
     _grids.forEach(grid => { grid.addEventListener('click', playRound);});
-    
-    const reset = () => {
-        _gameboard.forEach(grid => grid = '');
-        displayController.displayBoard(_gameboard);
-        alert.classList.remove('active');
-    }
-    restartButton.addEventListener('click', reset);
+
+    return {reset};
     
 })();
