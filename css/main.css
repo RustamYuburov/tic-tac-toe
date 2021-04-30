@@ -13,7 +13,7 @@
 body {
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("../photos/background.jpg");
+    background-image: url("photos/background.jpg");
 }
 
 /* header */
