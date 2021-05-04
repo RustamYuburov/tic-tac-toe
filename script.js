@@ -1,13 +1,13 @@
 'use strict';
 
 const Player = () => {
-
     let _marker;
     let _status = true;
 
     const getMarker = () => {
         return _marker;
     };
+
     const setMarker = (sign) => {
         _marker = sign;
     };
@@ -22,11 +22,9 @@ const Player = () => {
 
 
     return { setMarker, getMarker, getStatus, setStatus };
-
 };
 
 const gameBoard = (() => {
-
     let _board = ['', '', '',
                     '', '', '',
                     '', '', ''];
@@ -41,12 +39,10 @@ const gameBoard = (() => {
         }
     }
 
-    return {getBoard, clearBoard}
-
+    return { getBoard, clearBoard }
 })();
 
 const displayController = (() => {
-    
     const _arrayGrids = Array.from(document.querySelectorAll('.grid'));
     const _alertModule = document.querySelector('.alert-module');
     const _alertModuleText = document.querySelector('.alert-text');
@@ -82,12 +78,10 @@ const displayController = (() => {
 
     restartButton.addEventListener('click', restart);
     
-    return {getGrids, displayBoard, displayWinner,};
-    
+    return { getGrids, displayBoard, displayWinner };  
 })();
 
 const gameController = (() => {  
-
     let _gameboard = gameBoard.getBoard();
     const _grids = displayController.getGrids();
 
@@ -176,6 +170,5 @@ const gameController = (() => {
     
     _grids.forEach(grid => { grid.addEventListener('click', playRound);});
 
-    return {reset};
-    
+    return { reset }; 
 })();
